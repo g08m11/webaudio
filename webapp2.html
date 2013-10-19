@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>‚Ð‚½‚·‚ç“ü—Íƒhƒ‰ƒ€</h1>
-<textarea cols="90" rows="30" onkeyup="Play(value)"></textarea>
+<textarea cols="90" rows="30" onkeyup="Play(value.length)"></textarea>
 
 
 <script type="text/javascript">
@@ -16,12 +16,31 @@
         var audioctx = new AudioContext();
 
     var buffer = null;
-    LoadSample(audioctx, "./SNARE_1.WAV");
+    var files = [
+        "SNARE_2.WAV",
+        "SNARE_1.WAV"
+    ];
+    var buffers = [];
+    var loadidx = 0;
+    var req = new XMLHttpRequest();
+    LoadBuffers();
 
-    function Play() {
-        var src = audioctx.createBufferSource();
-        src.buffer = buffer;
-        src.connect(audioctx.destination);
+    //LoadSample(audioctx, "./SNARE_1.WAV");
+    //LoadSample(audioctx, "./SNARE_2.WAV");
+
+    function Play(value) {
+        console.log(value);
+        if(value%5 == 0){
+            var src = audioctx.createBufferSource();
+            src.buffer = buffers[0];
+            src.connect(audioctx.destination);
+
+        }else{
+            var src = audioctx.createBufferSource();
+            src.buffer = buffers[1];
+            src.connect(audioctx.destination);
+
+        }
         src.start(0);
     }
 
@@ -39,6 +58,25 @@
         }
         req.send();
     }
+
+    function LoadBuffers() {
+        req.open("GET", files[loadidx], true);
+        req.responseType = "arraybuffer";
+        req.onload = function() {
+            console.log(req.response);
+            if(req.response) {
+                audioctx.decodeAudioData(req.response,function(b){
+                    buffers[loadidx]=b;
+                    if(++loadidx < files.length)
+                        LoadBuffers();
+                },function(){});
+            }
+            else
+                buffers[loadidx] = audioctx.createBuffer(VBArray(req.responseBody).toArray(), false);
+        };
+        req.send();
+    }
+
 
 </script>
 
