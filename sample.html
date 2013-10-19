@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1>Sample Step</h1>
+<img src="images/osc1.png"/><br/>
+<button onclick="Play()"> Play </button><br/>
+
+<img src="images/osc.png"/><br/>
+<button onclick="Play2()"> Play2 </button><br/>
+
+<script type="text/javascript" src="/docs/waapisim/waapisim.js"></script>
+<script type="text/javascript">
+ 
+if(typeof(webkitAudioContext)!=="undefined")
+    var audioctx = new webkitAudioContext();
+else if(typeof(AudioContext)!=="undefined")
+    var audioctx = new AudioContext();
+ 
+//var osc = audioctx.createOscillator();
+//osc.connect(audioctx.destination);
+ 
+function Play() {
+
+    var osc = audioctx.createOscillator();
+    osc.connect(audioctx.destination);
+    //デフォルトの波形を変える設定
+    osc.type = "square";
+
+    //デフォルトの周波数を変える設定
+    osc.frequency.value = 440;
+
+    osc.start(0);
+
+    setTimeout(function() {
+        osc.stop(0);
+    },500);
+}
+
+function Play2() {
+
+    var osc = audioctx.createOscillator();
+    osc.connect(audioctx.destination);
+    //デフォルトの波形を変える設定
+    osc.type = "sawtooth";
+
+    //デフォルトの周波数を変える設定
+    osc.frequency.value = 600;
+
+    osc.start(0);
+
+    setTimeout(function() {
+        osc.stop(0);
+    },500);
+}
+
+
+</script>
+</body>
+</html>

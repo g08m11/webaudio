@@ -1,0 +1,152 @@
+<!DOCTYPE html chac>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+
+</head>
+<body>
+<h1>選択すると音が出る心理テストです</h1>
+
+<form>
+    <div id="psycho_question">
+        <p>[Q1] 子供時代、あなたがよくしていた遊びは？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu01" value="b" class="radio" onclick="Play(1)">外で野球やかくれんぼなど</label>
+            <label class="radiorabel"><input type="radio" name="qu01" value="h" class="radio" onclick="Play(1)">外で昆虫採集など</label>
+            <label class="radiorabel"><input type="radio" name="qu01" value="a" class="radio" onclick="Play(1)">家でお絵かき、おままごとなど</label>
+            <label class="radiorabel"><input type="radio" name="qu01" value="c" class="radio" onclick="Play(1)">友達と一緒にいろんなことを</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q2] あなたはインドア派？　アウトドア派？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu02" value="h" class="radio" onclick="Play(2)">超アウトドア</label>
+            <label class="radiorabel"><input type="radio" name="qu02" value="b" class="radio" onclick="Play(2)">どちらかというとアウトドア</label>
+            <label class="radiorabel"><input type="radio" name="qu02" value="f" class="radio" onclick="Play(2)">どちらかというとインドア</label>
+            <label class="radiorabel"><input type="radio" name="qu02" value="g" class="radio" onclick="Play(2)">超インドア</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q3] あなたが憧れるのはどんな人物？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu03" value="e" class="radio" onclick="Play(3)">世界で活躍するスポーツ選手など</label>
+            <label class="radiorabel"><input type="radio" name="qu03" value="d" class="radio" onclick="Play(3)">自分の実力で大金を稼ぎだす経営者</label>
+            <label class="radiorabel"><input type="radio" name="qu03" value="a" class="radio" onclick="Play(3)">知的で頭のいい文化人</label>
+            <label class="radiorabel"><input type="radio" name="qu03" value="c" class="radio" onclick="Play(3)">やさしくて誰からも好かれている人</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q4] 長距離走の途中、腹痛に見舞われました。どうする？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu04" value="f" class="radio" onclick="Play(4)">棄権する</label>
+            <label class="radiorabel"><input type="radio" name="qu04" value="c" class="radio" onclick="Play(4)">とりあえず休む</label>
+            <label class="radiorabel"><input type="radio" name="qu04" value="h" class="radio" onclick="Play(4)">自分を騙し騙し走りつづける</label>
+            <label class="radiorabel"><input type="radio" name="qu04" value="e" class="radio" onclick="Play(4)">気合だけで最後まで走りぬく</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q5] 次のうち、どれなら耐えられそう？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu05" value="f" class="radio" onclick="Play(5)">１か月間、金がない</label>
+            <label class="radiorabel"><input type="radio" name="qu05" value="b" class="radio" onclick="Play(5)">１か月間、野宿する</label>
+            <label class="radiorabel"><input type="radio" name="qu05" value="g" class="radio" onclick="Play(5)">１か月間、誰とも喋らない</label>
+            <label class="radiorabel"><input type="radio" name="qu05" value="d" class="radio" onclick="Play(5)">１か月間、ごはんにおかずがない</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q6] あなたにとって大切なものは</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu06" value="d" class="radio" onclick="Play(6)">お金</label>
+            <label class="radiorabel"><input type="radio" name="qu06" value="g" class="radio" onclick="Play(6)">時間</label>
+            <label class="radiorabel"><input type="radio" name="qu06" value="e" class="radio" onclick="Play(6)">愛</label>
+            <label class="radiorabel"><input type="radio" name="qu06" value="a" class="radio" onclick="Play(6)">目的</label>
+        </div><!--/choice-->
+    </div>
+
+    <div id="psycho_question">
+        <p>[Q7] 遠方の親戚が危篤に陥りました。さて、どうする？</p>
+        <div class="choice">
+            <label class="radiorabel"><input type="radio" name="qu07" value="g" class="radio" onclick="Play(7)">とりあえず連絡を待つ</label>
+            <label class="radiorabel"><input type="radio" name="qu07" value="e" class="radio" onclick="Play(7)">とりあえず他の親戚に様子を聞く</label>
+            <label class="radiorabel"><input type="radio" name="qu07" value="d" class="radio" onclick="Play(7)">とりあえず駆けつける</label>
+            <label class="radiorabel"><input type="radio" name="qu07" value="f" class="radio" onclick="Play(7)">何もしない</label>
+        </div><!--/choice-->
+    </div>
+
+</form>
+<button onclick="Play(8)"> 送信 </button><br/>
+
+<script type="text/javascript" src="/docs/waapisim/waapisim.js"></script>
+<script type="text/javascript">
+
+    if(typeof(webkitAudioContext)!=="undefined")
+        var audioctx = new webkitAudioContext();
+    else if(typeof(AudioContext)!=="undefined")
+        var audioctx = new AudioContext();
+
+    //var osc = audioctx.createOscillator();
+    //osc.connect(audioctx.destination);
+
+    function Play(i) {
+
+        var osc = audioctx.createOscillator();
+        osc.connect(audioctx.destination);
+        //デフォルトの波形を変える設定
+        osc.type = "sawtooth";
+
+        //デフォルトの周波数を変える設定
+        switch (i) {
+            //ドの音
+            case 1:
+                osc.frequency.value = 523.251131;
+                break;
+            //レの音
+            case 2:
+                osc.frequency.value = 587.329536;
+                break;
+            //ミの音
+            case 3:
+                osc.frequency.value = 659.255114;
+                break;
+            //ファの音
+            case 4:
+                osc.frequency.value = 698.456463;
+                break;
+            //ソの音
+            case 5:
+                osc.frequency.value = 783.990872;
+                break;
+            //ラの音
+            case 6:
+                osc.frequency.value = 880.000000;
+                break;
+            //シの音
+            //1オクターブ低かったから*2
+            case 7:
+                osc.frequency.value = 493.883301*2;
+                break;
+            //ドの音
+            //1オクターブ低かったから*2
+            case 8:
+                osc.frequency.value = 523.251131*2;
+                break;
+
+
+        }
+
+
+        osc.start(0);
+
+        setTimeout(function() {
+            osc.stop(0);
+        },1000);
+    }
+
+</script>
+</body>
+</html>
